@@ -15,7 +15,7 @@ jobs:
           bearer-token: ${{ secrets.WEBFLOWAPIKEY }}
           content-type: application/json
           headers: '{ "accept-version": "1.0.0" }'
-          data: '{ "fields": { "name": `${{ toJson(on.webhook.outputs.body.data.name) }}` } }'
+          data: '{ "fields": { "name": "Marcel" } }'
       - name: Print Outputs
         env:
           method: ${{ on.webhook.outputs.method }}
