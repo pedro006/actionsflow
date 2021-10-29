@@ -17,3 +17,4 @@ jobs:
           headers: '{ "accept-version": "1.0.0" }'
           params: '{ "live": "true" }'
           data: '{ "fields": { "name": "Marcel" } }'
+      - run: echo ${{ steps.api }}
