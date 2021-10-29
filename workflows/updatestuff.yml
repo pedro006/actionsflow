@@ -2,18 +2,18 @@ on:
   webhook:
     method: post
 jobs:
-  print:
-    name: Print
+  patchitem:
+    name: Patch item
     runs-on: ubuntu-latest
     steps:
-      - name: Call API
-        uses: actionsflow/axios@v1
+      - name: HTTP Request Action
+        uses: fjogeleit/http-request-action@v1.8.1
         id: api
         with:
-          url: https://api.webflow.com/collections/617b60c3b5eba242c8571499/items/617b60c555f22dfbcbd9893c
-          bearer_token: ${{ secrets.API_KEY }}
+          url: 'https://api.webflow.com/collections/617b60c3b5eba242c8571499/items/617b60c555f22dfbcbd9893c'
+          bearerToken: ${{ secrets.API_KEY }}
           method: 'PATCH'
-          headers: '{ "accept-version": "1.0.0", "content-type":"application/json" }'
-          params: '{ "live": "true" }'
+          customHeaders: '{ "accept-version": "1.0.0", "content-type":"application/json" }'
           data: '{ "fields": { "name": "Marcel" } }'
-      - run: echo ${{ steps.api }}
+      - name: Show Response
+        run: echo ${{ steps.api.outputs.response }}
