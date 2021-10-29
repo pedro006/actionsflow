@@ -13,8 +13,7 @@ jobs:
           url: https://api.webflow.com/collections/617b60c3b5eba242c8571499/items/617b60c555f22dfbcbd9893c
           bearer_token: ${{ secrets.API_KEY }}
           method: 'PATCH'
-          content-type: application/json
-          headers: '{ "accept-version": "1.0.0" }'
+          headers: '{ "accept-version": "1.0.0", "content-type":"application/json" }'
           params: '{ "live": "true" }'
           data: '{ "fields": { "name": "Marcel" } }'
       - run: echo ${{ steps.api }}
