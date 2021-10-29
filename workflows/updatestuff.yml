@@ -13,16 +13,6 @@ jobs:
           url: https://api.webflow.com/collections/617b60c3b5eba242c8571499/items/617b60c555f22dfbcbd9893c
           method: 'PATCH'
           content-type: application/json
-          bearer-token: ${{ secrets.WEBFLOWAPIKEY }}
           headers: '{ "accept-version": "1.0.0" }'
-          params: '{ "live": "true"}'
+          params: '{ "live": "true", "access_token": ${{ secrets.API_KEY }} }'
           data: '{ "fields": { "name": "Marcel" } }'
-      - name: Print Outputs
-        env:
-          method: ${{ on.webhook.outputs.method }}
-          body: ${{ toJson(on.webhook.outputs.body.data) }}
-          headers: ${{ toJson(on.webhook.outputs.headers) }}
-        run: |
-          echo method: $method
-          echo headers $headers
-          echo body: $body.data.name
