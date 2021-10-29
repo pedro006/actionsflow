@@ -9,11 +9,15 @@ jobs:
       - name: HTTP Request Action
         uses: fjogeleit/http-request-action@v1.8.1
         id: api
+        env:
+          body: ${{ toJson(on.webhook.outputs.body) }}
         with:
-          url: 'https://api.webflow.com/collections/617b60c3b5eba242c8571499/items/617b60c555f22dfbcbd9893c?live=true'
+          url: 'https://api.webflow.com/collections/617b60c3b5eba242c8571499/items/`$body.hs_id`?live=true'
           bearerToken: ${{ secrets.API_KEY }}
           method: 'PATCH'
           customHeaders: '{ "accept-version": "1.0.0", "content-type":"application/json" }'
-          data: '{ "fields": { "name": "Marcel" } }'
+          data: '{ "fields": { "name": $body.name } }'
       - name: Show Response
-        run: echo ${{ steps.api.outputs.response }}
+        run: |
+          echo ${{ steps.api.outputs.response }}
+          echo $body
