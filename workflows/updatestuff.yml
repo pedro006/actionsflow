@@ -13,6 +13,7 @@ jobs:
           url: https://api.webflow.com/collections/617b60c3b5eba242c8571499/items/${{ toJson(on.webhook.outputs.body.data.row-id) }}?live=true
           method: 'PATCH'
           bearer-token: ${{ secrets.WEBFLOWAPIKEY }}
+          content-type: application/json
           headers: '{ "accept-version": "1.0.0" }'
           data: '{ "fields": { "name": `${{ toJson(on.webhook.outputs.body.data.name) }}` } }'
       - name: Print Outputs
