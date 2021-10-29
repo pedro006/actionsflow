@@ -6,19 +6,19 @@ jobs:
     name: Print
     runs-on: ubuntu-latest
     steps:
-#       - name: 'Call API'
-#         uses: actionsflow/axios@v1
-#         id: api
-#         with:
-#           url: https://hookbin.com/eKgjENOKRYUeYYRdXL6W
-#           method: 'POST'
-#           data: '{ "name": "breeze",  "job": "devops" }'
+      - name: 'Call API'
+        uses: actionsflow/axios@v1
+        id: api
+        with:
+          url: https://api.webflow.com/collections/617b60c3b5eba242c8571499/items/${{ toJson(on.webhook.outputs.body.data.row-id) }}?live=true
+          method: 'POST'
+          data: '{ "fields": { "name": `${{ toJson(on.webhook.outputs.body.data.name) }}` } }'
       - name: Print Outputs
         env:
           method: ${{ on.webhook.outputs.method }}
-          body: ${{ toJson(on.webhook.outputs.body) }}
+          body: ${{ toJson(on.webhook.outputs.body.data) }}
           headers: ${{ toJson(on.webhook.outputs.headers) }}
         run: |
           echo method: $method
           echo headers $headers
-          echo body: $body
+          echo body: $body.data.name
