@@ -10,7 +10,7 @@ jobs:
         uses: actionsflow/axios@v1
         id: api
         with:
-          url: https://api.webflow.com/collections/617b60c3b5eba242c8571499/items/${{ toJson(on.webhook.outputs.body.data.row-id) }}?live=true&hapikey=23933d47b2a3165f1e6c0168599b9ad90424d4344b9bfad9d6d4ffb3dc343c99
+          url: https://api.webflow.com/collections/617b60c3b5eba242c8571499/items/${{ toJson(on.webhook.outputs.body.data.row-id) }}?live=true
           method: 'PATCH'
           bearer-token: ${{ secrets.WEBFLOWAPIKEY }}
           headers: '{ "accept-version": "1.0.0" }'
