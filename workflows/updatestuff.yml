@@ -6,7 +6,7 @@ jobs:
     name: Print
     runs-on: ubuntu-latest
     steps:
-      - name: 'Call API'
+      - name: Call API
         uses: actionsflow/axios@v1
         id: api
         with:
